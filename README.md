@@ -1,5 +1,6 @@
 # Awesome-Hallu-Eval: Can we catch the Elephant?
 This is a curated list of evaluators designed to assess model hallucination. Here, you can easily find the right tools you need to evaluate and analyze hallucination behavior in language models.
+
 Hallucinations can no longer remain the elephant in the room, they must be actively hunted down and captured.
 
 ## Hallucination Evaluation Methods
