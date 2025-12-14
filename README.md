@@ -122,119 +122,119 @@ Hallucinations can no longer remain the elephant in the room, they must be activ
 ### 🚀 After LLM Era
 *Methods that rely on or utilize Large Language Models.*
 
-| Year | Name | Task | Model Basis | Method | Metric | SF | WF |
-| :--- | :--- | :--- | :--- | :--- | :--- | :---: | :---: |
-| 2024 | **SCALE** | Long Dial. | Flan-T5 | NLI | Likelihood | ✅ | ❌ |
-| 2023 | **Chen et al.** | Summ | GPT-4/T5 | Vanilla/COT/Sent-Prompt | Balanced Acc | ✅ | ❌ |
-| 2023 | **GPTScore** | Summ/Dial | GPT-3 | Direct Assessment | Direct Score | ✅ | ❌ |
-| 2023 | **G-Eval** | Summ/Dial | GPT-4 | COT/Form-filling | Weighted Scores | ✅ | ❌ |
-| 2023 | **Wang et al.** | Summ/D2T | ChatGPT | Direct Assessment | Direct score | ✅ | ❌ |
-| 2023 | **ChainPoll** | Hallu Detect | GPT-3.5 | Direct Assessment | Accuracy | ✅ | ❌ |
-| 2024 | **EigenScore** | QA | LLaMA/OPT | Semantic Embedding | AUROC, PCC | ✅ | ❌ |
-| 2021 | **TruthfulQA** | QA | GPT-3 | Answer Match | Likelihood | ❌ | ✅ |
-| 2023 | **HaluEval** | QA/Summ | ChatGPT | Direct Assessment | Accuracy | ✅ | ✅ |
-| 2023 | **FACTOR** | Generation | - | FRANK Classification | Likelihood | ❌ | ✅ |
-| 2023 | **FELM** | Reasoning | GPT-4 | Direct Assessment | F1/Acc | ✅ | ✅ |
-| 2023 | **FreshQA** | Generation | - | Answer Match | Accuracy | ❌ | ✅ |
-| 2023 | **RealTimeQA** | Generation | GPT-3/T5 | Answer Match | Acc, F1 | ❌ | ✅ |
-| 2023 | **ERBench** | QA | - | String Matching | Hallu Rate | ❌ | ✅ |
-| 2023 | **FactScore** | Biography | GPT/ChatGPT | Binary Classification | Precision | ❌ | ✅ |
-| 2023 | **BAMBOO** | Multi-choice | ChatGPT | Answer Match | F1 | ✅ | ❌ |
-| 2023 | **MedHalt** | Medical | ChatGPT | Answer Match | Accuracy | ❌ | ✅ |
-| 2023 | **ChineseFactEval** | Generation | FacTool | Direct Score | Direct Score | ❌ | ✅ |
-| 2023 | **UHGEval** | News | GPT-4 | Answer Match | Similarity | ❌ | ✅ |
-| 2023 | **HalluQA** | Generation | GPT-4/GLM | Direct Assessment | Non-hallu Rate | ❌ | ✅ |
-| 2023 | **FacTool** | QA/Code | ChatGPT | Tool Querying | F1 | ✅ | ✅ |
-| 2023 | **UFO** | QA/RAG | GPT-3.5 | Fact Verification | Avg Sub-scores | ✅ | ✅ |
-| 2023 | **CONNER** | QA/Dial. | RoBERTa | 3-way NLI | Accuracy | ❌ | ✅ |
-| 2023 | **SelfCheckGPT** | Detection | GPT-3 | NLI/Ngram/QA | AUC-PR | ✅ | ❌ |
-| 2023 | **InterrogateLLM** | Detection | GPT-3/Llama | Query Consistency | AUC | ❌ | ✅ |
-| 2023 | **SAC³** | QA Gen | GPT-3.5 | Cross-checking | AUROC | ✅ | ✅ |
-| 2023 | **KoLA** | KB | - | Self-contrast | Similarity | ❌ | ✅ |
-| 2023 | **RV** | Generation | ChatGPT | Database Access | F1 | ✅ | ❌ |
-| 2023 | **SummEdits** | Summ | GPT-3.5 | Seed Verification | Balanced Acc | ✅ | ❌ |
-| 2023 | **LLM-Check** | Fact-check | Llama/GPT | Internal Attn/Logits | AUROC | ❌ | ✅ |
-| 2023 | **PHR** | ICL | Llama/Gemma | Bayesian Posterior | Hallu Rate | ✅ | ❌ |
-| 2023 | **HalluMeasure** | Summ | Claude | COT/Reasoning | F1 | ✅ | ❌ |
-| 2023 | **EGH** | QA/Summ | Llama/OPT | Embedding Diff | AUC/F1 | ✅ | ✅ |
-| 2023 | **STARE** | NMT | COMET/XNLI | Aggregate Scores | AUROC | ✅ | ❌ |
-| 2023 | **HaluAgent** | QA/Code | GPT-4 | Tool Selection | Acc/F1 | ✅ | ✅ |
-| 2023 | **RefChecker** | QA/RAG | GPT-4/NLI | Extractor & Checker | F1 | ✅ | ✅ |
-| 2023 | **HDM-2** | Gen | Qwen-2.5 | Classification | F1 | ✅ | ✅ |
-| 2024 | **Lookback Lens** | Summ/QA | Llama-2 | Attention Map | AUROC | ✅ | ✅ |
-| 2024 | **KnowHalu** | QA/Summ | Starling/GPT | Multi-form check | TPR/TNR | ✅ | ✅ |
-| 2024 | **AXCEL** | Summ/Gen | Llama/Claude | Direct Assessment | F1/AUC | ✅ | ✅ |
-| 2024 | **Drowzee** | QA | GPT/Llama | Direct Assessment | FCH Ratio | ❌ | ✅ |
-| 2024 | **MIND** | Writing | MLP | Embedding MLP | AUC | ❌ | ✅ |
-| 2024 | **BTProp** | Generation | Llama3 | Hidden Markov Tree | AUROC | ❌ | ✅ |
-| 2024 | **FAVA** | Retrieval | Llama2 | Tag Generation | F1 | ❌ | ✅ |
-| 2024 | **Semantic Entropy** | QA | Llama/Mistral | Semantic Entropy | AUROC | ❌ | ✅ |
-| 2024 | **SEPs** | QA | Llama/Phi | Semantic Probes | AUROC | ❌ | ✅ |
-| 2024 | **HaloScope** | QA | Llama/OPT | Unsupervised | AUROC | ❌ | ✅ |
-| 2024 | **LRP4RAG** | QA | Llama-2 | Internal State | F1 | ✅ | ✅ |
-| 2024 | **Halu-J** | Fact-check | GPT-4 | Reasoning | Accuracy | ❌ | ✅ |
-| 2023 | **NonFactS** | Summ | BART/RoBERTa | NLI | Balanced Acc | ✅ | ❌ |
-| 2023 | **MFMA** | Summ | BART/T5 | Classification | F1 | ✅ | ❌ |
-| 2024 | **HADEMIF** | QA | Llama2 | Hidden Calibration | ECE | ❌ | ✅ |
-| 2024 | **REDEEP** | RAG | Llama | Context/Param Score | AUC | ❌ | ✅ |
-| 2024 | **LMvLM** | QA | GPT/Llama | Multi-turn Judge | F1 | ❌ | ✅ |
-| 2024 | **OnionEval** | QA | Llama/Qwen | Layered Eval | Accuracy | ✅ | ❌ |
-| 2023 | **LongEval** | Summ | LLMs | LLM-as-a-Judge | Aggregation | ✅ | ❌ |
-| 2023 | **No et al.** | Summ | Multiple | Meta-evaluation | Pearson | ✅ | ❌ |
-| 2023 | **Zhu et al.** | Summ | Foundation | LLM-as-judge (QA) | Pearson | ✅ | ❌ |
-| 2024 | **ACUEval** | Summ | GPT-4 | ACU Extraction | F1 | ✅ | ❌ |
-| 2024 | **FENICE** | Summ | DeBERTa | Claim Ext. + NLI | F1 | ✅ | ❌ |
-| 2024 | **Perez et al.** | Summ | DeBERTa | Fine-grained NLI | F1 | ✅ | ❌ |
-| 2024 | **HGOT** | RAG | Llama2 | Graph of Thoughts | Accuracy | ❌ | ✅ |
-| 2024 | **ReEval** | RAG | Llama2 | Adversarial Attack | ASR | ✅ | ❌ |
-| 2024 | **TimeChara** | Role-play | GPT-3.5/4 | LLM-as-a-Judge | Consistency | ❌ | ✅ |
-| 2024 | **MetaCheckGPT** | Multi-task | GPT-3.5 | Meta-model | F1 | ✅ | ✅ |
-| 2024 | **Zhang et al.** | Code | GPT-4 | LLM-as-a-Judge | Hallu Rate | ❌ | ✅ |
-| 2024 | **Ho et al.** | Legal QA | GPT-4 | Human Evaluation | Accuracy | ❌ | ✅ |
-| 2024 | **Blair et al.** | Legal Analysis | GPT-4 | Fine-grained Eval | F1 | ✅ | ❌ |
-| 2024 | **OpenFactCheck** | Fact Check | GPT/Llama | Decomp & Verify | F1 | ❌ | ✅ |
-| 2025 | **PlainQAFact** | QA/Summ | GPT-4 | Direct Assessment | Correlation | ✅ | ❌ |
-| 2025 | **Zhang et al.** | Hypothesis Gen | GPT-4 | LLM-as-a-Judge | Truthfulness | ❌ | ✅ |
-| 2025 | **MedScore** | QA | GPT-4 | Statement Verify | MedScore | ❌ | ✅ |
-| 2025 | **T2F** | Fact Eval | Agents | Multi-agent | F1 | ✅ | ❌ |
-| 2025 | **VeriFact** | Summ | GPT-4 | Fact Extraction | F1 | ✅ | ❌ |
-| 2025 | **VeriFastScore** | Summ | DeBERTa | NLI Alignment | Pearson | ✅ | ❌ |
-| 2025 | **Luna** | QA | DeBERTa | NLI (3-class) | F1 | ✅ | ❌ |
-| 2025 | **Godbout et al.** | Summ | GPT-4 | Likert Scale Eval | Pearson | ✅ | ❌ |
-| 2025 | **Huang et al.** | Reasoning | GPT-4 | LLM-as-a-Judge | Accuracy | ❌ | ✅ |
-| 2025 | **Liu et al.** | Reasoning | LLMs | Reasoning Consist. | F1 | ❌ | ✅ |
-| 2025 | **Li et al.** | QA | Llama2 | Semantic Entropy | AUC | ❌ | ✅ |
+| Name | Task | Model Basis | Method | Metric | SF | WF |
+| :--- | :--- | :--- | :--- | :--- | :---: | :---: |
+| **SCALE** | Long Dial. | Flan-T5 | NLI | Likelihood | ✅ | ❌ |
+| **Chen et al.** | Summ | GPT-4/T5 | Vanilla/COT/Sent-Prompt | Balanced Acc | ✅ | ❌ |
+| **GPTScore** | Summ/Dial | GPT-3 | Direct Assessment | Direct Score | ✅ | ❌ |
+| **G-Eval** | Summ/Dial | GPT-4 | COT/Form-filling | Weighted Scores | ✅ | ❌ |
+| **Wang et al.** | Summ/D2T | ChatGPT | Direct Assessment | Direct score | ✅ | ❌ |
+| **ChainPoll** | Hallu Detect | GPT-3.5 | Direct Assessment | Accuracy | ✅ | ❌ |
+| **EigenScore** | QA | LLaMA/OPT | Semantic Embedding | AUROC, PCC | ✅ | ❌ |
+| **TruthfulQA** | QA | GPT-3 | Answer Match | Likelihood | ❌ | ✅ |
+| **HaluEval** | QA/Summ | ChatGPT | Direct Assessment | Accuracy | ✅ | ✅ |
+| **FACTOR** | Generation | - | FRANK Classification | Likelihood | ❌ | ✅ |
+| **FELM** | Reasoning | GPT-4 | Direct Assessment | F1/Acc | ✅ | ✅ |
+| **FreshQA** | Generation | - | Answer Match | Accuracy | ❌ | ✅ |
+| **RealTimeQA** | Generation | GPT-3/T5 | Answer Match | Acc, F1 | ❌ | ✅ |
+| **ERBench** | QA | - | String Matching | Hallu Rate | ❌ | ✅ |
+| **FactScore** | Biography | GPT/ChatGPT | Binary Classification | Precision | ❌ | ✅ |
+| **BAMBOO** | Multi-choice | ChatGPT | Answer Match | F1 | ✅ | ❌ |
+| **MedHalt** | Medical | ChatGPT | Answer Match | Accuracy | ❌ | ✅ |
+| **ChineseFactEval** | Generation | FacTool | Direct Score | Direct Score | ❌ | ✅ |
+| **UHGEval** | News | GPT-4 | Answer Match | Similarity | ❌ | ✅ |
+| **HalluQA** | Generation | GPT-4/GLM | Direct Assessment | Non-hallu Rate | ❌ | ✅ |
+| **FacTool** | QA/Code | ChatGPT | Tool Querying | F1 | ✅ | ✅ |
+| **UFO** | QA/RAG | GPT-3.5 | Fact Verification | Avg Sub-scores | ✅ | ✅ |
+| **CONNER** | QA/Dial. | RoBERTa | 3-way NLI | Accuracy | ❌ | ✅ |
+| **SelfCheckGPT** | Detection | GPT-3 | NLI/Ngram/QA | AUC-PR | ✅ | ❌ |
+| **InterrogateLLM** | Detection | GPT-3/Llama | Query Consistency | AUC | ❌ | ✅ |
+| **SAC³** | QA Gen | GPT-3.5 | Cross-checking | AUROC | ✅ | ✅ |
+| **KoLA** | KB | - | Self-contrast | Similarity | ❌ | ✅ |
+| **RV** | Generation | ChatGPT | Database Access | F1 | ✅ | ❌ |
+| **SummEdits** | Summ | GPT-3.5 | Seed Verification | Balanced Acc | ✅ | ❌ |
+| **LLM-Check** | Fact-check | Llama/GPT | Internal Attn/Logits | AUROC | ❌ | ✅ |
+| **PHR** | ICL | Llama/Gemma | Bayesian Posterior | Hallu Rate | ✅ | ❌ |
+| **HalluMeasure** | Summ | Claude | COT/Reasoning | F1 | ✅ | ❌ |
+| **EGH** | QA/Summ | Llama/OPT | Embedding Diff | AUC/F1 | ✅ | ✅ |
+| **STARE** | NMT | COMET/XNLI | Aggregate Scores | AUROC | ✅ | ❌ |
+| **HaluAgent** | QA/Code | GPT-4 | Tool Selection | Acc/F1 | ✅ | ✅ |
+| **RefChecker** | QA/RAG | GPT-4/NLI | Extractor & Checker | F1 | ✅ | ✅ |
+| **HDM-2** | Gen | Qwen-2.5 | Classification | F1 | ✅ | ✅ |
+| **Lookback Lens** | Summ/QA | Llama-2 | Attention Map | AUROC | ✅ | ✅ |
+| **KnowHalu** | QA/Summ | Starling/GPT | Multi-form check | TPR/TNR | ✅ | ✅ |
+| **AXCEL** | Summ/Gen | Llama/Claude | Direct Assessment | F1/AUC | ✅ | ✅ |
+| **Drowzee** | QA | GPT/Llama | Direct Assessment | FCH Ratio | ❌ | ✅ |
+| **MIND** | Writing | MLP | Embedding MLP | AUC | ❌ | ✅ |
+| **BTProp** | Generation | Llama3 | Hidden Markov Tree | AUROC | ❌ | ✅ |
+| **FAVA** | Retrieval | Llama2 | Tag Generation | F1 | ❌ | ✅ |
+| **Semantic Entropy** | QA | Llama/Mistral | Semantic Entropy | AUROC | ❌ | ✅ |
+| **SEPs** | QA | Llama/Phi | Semantic Probes | AUROC | ❌ | ✅ |
+| **HaloScope** | QA | Llama/OPT | Unsupervised | AUROC | ❌ | ✅ |
+| **LRP4RAG** | QA | Llama-2 | Internal State | F1 | ✅ | ✅ |
+| **Halu-J** | Fact-check | GPT-4 | Reasoning | Accuracy | ❌ | ✅ |
+| **NonFactS** | Summ | BART/RoBERTa | NLI | Balanced Acc | ✅ | ❌ |
+| **MFMA** | Summ | BART/T5 | Classification | F1 | ✅ | ❌ |
+| **HADEMIF** | QA | Llama2 | Hidden Calibration | ECE | ❌ | ✅ |
+| **REDEEP** | RAG | Llama | Context/Param Score | AUC | ❌ | ✅ |
+| **LMvLM** | QA | GPT/Llama | Multi-turn Judge | F1 | ❌ | ✅ |
+| **OnionEval** | QA | Llama/Qwen | Layered Eval | Accuracy | ✅ | ❌ |
+| **LongEval** | Summ | LLMs | LLM-as-a-Judge | Aggregation | ✅ | ❌ |
+| **No et al.** | Summ | Multiple | Meta-evaluation | Pearson | ✅ | ❌ |
+| **Zhu et al.** | Summ | Foundation | LLM-as-judge (QA) | Pearson | ✅ | ❌ |
+| **ACUEval** | Summ | GPT-4 | ACU Extraction | F1 | ✅ | ❌ |
+| **FENICE** | Summ | DeBERTa | Claim Ext. + NLI | F1 | ✅ | ❌ |
+| **Perez et al.** | Summ | DeBERTa | Fine-grained NLI | F1 | ✅ | ❌ |
+| **HGOT** | RAG | Llama2 | Graph of Thoughts | Accuracy | ❌ | ✅ |
+| **ReEval** | RAG | Llama2 | Adversarial Attack | ASR | ✅ | ❌ |
+| **TimeChara** | Role-play | GPT-3.5/4 | LLM-as-a-Judge | Consistency | ❌ | ✅ |
+| **MetaCheckGPT** | Multi-task | GPT-3.5 | Meta-model | F1 | ✅ | ✅ |
+| **Zhang et al.** | Code | GPT-4 | LLM-as-a-Judge | Hallu Rate | ❌ | ✅ |
+| **Ho et al.** | Legal QA | GPT-4 | Human Evaluation | Accuracy | ❌ | ✅ |
+| **Blair et al.** | Legal Analysis | GPT-4 | Fine-grained Eval | F1 | ✅ | ❌ |
+| **OpenFactCheck** | Fact Check | GPT/Llama | Decomp & Verify | F1 | ❌ | ✅ |
+|  **PlainQAFact** | QA/Summ | GPT-4 | Direct Assessment | Correlation | ✅ | ❌ |
+|  **Zhang et al.** | Hypothesis Gen | GPT-4 | LLM-as-a-Judge | Truthfulness | ❌ | ✅ |
+|  **MedScore** | QA | GPT-4 | Statement Verify | MedScore | ❌ | ✅ |
+|  **T2F** | Fact Eval | Agents | Multi-agent | F1 | ✅ | ❌ |
+|  **VeriFact** | Summ | GPT-4 | Fact Extraction | F1 | ✅ | ❌ |
+|  **VeriFastScore** | Summ | DeBERTa | NLI Alignment | Pearson | ✅ | ❌ |
+|  **Luna** | QA | DeBERTa | NLI (3-class) | F1 | ✅ | ❌ |
+|  **Godbout et al.** | Summ | GPT-4 | Likert Scale Eval | Pearson | ✅ | ❌ |
+|  **Huang et al.** | Reasoning | GPT-4 | LLM-as-a-Judge | Accuracy | ❌ | ✅ |
+|  **Liu et al.** | Reasoning | LLMs | Reasoning Consist. | F1 | ❌ | ✅ |
+|  **Li et al.** | QA | Llama2 | Semantic Entropy | AUC | ❌ | ✅ |
 
 ### 🕰️ Before LLM Era
 *Traditional methods not relying on the generative capabilities of LLMs.*
 
-| Year | Name | Task | Model Basis | Method | Metric | SF | WF |
-| :--- | :--- | :--- | :--- | :--- | :--- | :---: | :---: |
-| 2020 | **Fact_acc** | Summ | Transformer | Triplet Extraction | F1 | ✅ | ❌ |
-| 2020 | **FactCC** | Summ | BERT | NLI (2-class) | Likelihood | ✅ | ❌ |
-| 2021 | **DAE** | Summ | ELECTRA | Dependency Arc | Likelihood | ✅ | ❌ |
-| 2021 | **MaskEval** | Summ | T5 | Word Weighting | Match Score | ✅ | ❌ |
-| 2023 | **Guerreiro et al.** | NMT | Transformer | Uncertainty Measure | Similarity | ✅ | ❌ |
-| 2023 | **Dale et al.** | NMT | Transformer | Source Contribution | Percentage | ✅ | ❌ |
-| 2020 | **FEQA** | Summ | BART/BERT | QG-QA | F1 | ✅ | ❌ |
-| 2020 | **QAGS** | Summ | BART/BERT | QG-QA (Entity) | Similarity | ✅ | ❌ |
-| 2021 | **QuestEval** | Summ | T5 | QG-QA | F1 | ✅ | ❌ |
-| 2022 | **QAFactEval** | Summ | BART/ELECTRA | QG-QA + NLI | LERC | ✅ | ❌ |
-| 2022 | **MQAG** | Summ | T5/Longformer | Multi-Choice QA | Distance | ✅ | ❌ |
-| 2022 | **CoCo** | Summ | BART | Counterfactual | Likelihood | ✅ | ❌ |
-| 2021 | **FactGraph** | Summ | ELECTRA | Classification | F1 | ✅ | ❌ |
-| 2021 | **FactKB** | Summ | RoBERTa | Classification | F1 | ✅ | ❌ |
-| 2021 | **ExtEval** | Summ | SpanBERT | Direct Prediction | Sub-scores | ✅ | ❌ |
-| 2021 | **Q²** | Dialogue | T5/RoBERTa | QG-QA + NLI | Likelihood | ❌ | ✅ |
-| 2022 | **FactPush** | Dial/Summ | DeBERTa | NLI | AUC | ✅ | ❌ |
-| 2022 | **AlignScore** | 7 Tasks | RoBERTa | 3-way Class. | Likelihood | ✅ | ❌ |
-| 2022 | **WeCheck** | Summ/Dial | DeBERTaV3 | Weakly Sup. NLI | Likelihood | ✅ | ❌ |
-| 2019 | **PARENT** | Table2Text | LSTM | Parent Scoring | F1 | ✅ | ❌ |
-| 2018 | **Perez et al.** | Data2Text | Encoder-decoder | Multi-instance Learn | BLEU/ROUGE | ✅ | ❌ |
-| 2020 | **Duvsek et al.** | Data2Text | BERT | Lexicon-NLI | Accuracy | ✅ | ❌ |
-| 2021 | **GO FIGURE** | Summ | BERT/RoBERTa | Meta-evaluation | Correlation | ✅ | ❌ |
-| 2021 | **Qiu et al.** | Summ | Multiple | Adversarial Meta | ASR | ✅ | ❌ |
-| 2022 | **HaRiM+** | Summ | PLMs | Token Likelihood | Correlation | ✅ | ❌ |
+| Name | Task | Model Basis | Method | Metric | SF | WF |
+| :--- | :--- | :--- | :--- | :--- | :---: | :---: |
+| **Fact_acc** | Summ | Transformer | Triplet Extraction | F1 | ✅ | ❌ |
+| **FactCC** | Summ | BERT | NLI (2-class) | Likelihood | ✅ | ❌ |
+| **DAE** | Summ | ELECTRA | Dependency Arc | Likelihood | ✅ | ❌ |
+| **MaskEval** | Summ | T5 | Word Weighting | Match Score | ✅ | ❌ |
+| **Guerreiro et al.** | NMT | Transformer | Uncertainty Measure | Similarity | ✅ | ❌ |
+| **Dale et al.** | NMT | Transformer | Source Contribution | Percentage | ✅ | ❌ |
+| **FEQA** | Summ | BART/BERT | QG-QA | F1 | ✅ | ❌ |
+| **QAGS** | Summ | BART/BERT | QG-QA (Entity) | Similarity | ✅ | ❌ |
+| **QuestEval** | Summ | T5 | QG-QA | F1 | ✅ | ❌ |
+| **QAFactEval** | Summ | BART/ELECTRA | QG-QA + NLI | LERC | ✅ | ❌ |
+| **MQAG** | Summ | T5/Longformer | Multi-Choice QA | Distance | ✅ | ❌ |
+| **CoCo** | Summ | BART | Counterfactual | Likelihood | ✅ | ❌ |
+| **FactGraph** | Summ | ELECTRA | Classification | F1 | ✅ | ❌ |
+| **FactKB** | Summ | RoBERTa | Classification | F1 | ✅ | ❌ |
+| **ExtEval** | Summ | SpanBERT | Direct Prediction | Sub-scores | ✅ | ❌ |
+| **Q²** | Dialogue | T5/RoBERTa | QG-QA + NLI | Likelihood | ❌ | ✅ |
+| **FactPush** | Dial/Summ | DeBERTa | NLI | AUC | ✅ | ❌ |
+| **AlignScore** | 7 Tasks | RoBERTa | 3-way Class. | Likelihood | ✅ | ❌ |
+| **WeCheck** | Summ/Dial | DeBERTaV3 | Weakly Sup. NLI | Likelihood | ✅ | ❌ |
+| **PARENT** | Table2Text | LSTM | Parent Scoring | F1 | ✅ | ❌ |
+| **Perez et al.** | Data2Text | Encoder-decoder | Multi-instance Learn | BLEU/ROUGE | ✅ | ❌ |
+| **Duvsek et al.** | Data2Text | BERT | Lexicon-NLI | Accuracy | ✅ | ❌ |
+| **GO FIGURE** | Summ | BERT/RoBERTa | Meta-evaluation | Correlation | ✅ | ❌ |
+| **Qiu et al.** | Summ | Multiple | Adversarial Meta | ASR | ✅ | ❌ |
+| **HaRiM+** | Summ | PLMs | Token Likelihood | Correlation | ✅ | ❌ |
 
 ---
 <br>
