@@ -29,48 +29,80 @@
             const [activeView, setActiveView] = useState('timeline');
 
             // --- 数据定义 ---
-            const timelineData = [
+            // const timelineData = [
+            //     { year: '2020', count: 5 },
+            //     { year: '2021', count: 8 },
+            //     { year: '2022', count: 6 },
+            //     { year: '2023', count: 42 },
+            //     { year: '2024', count: 18 }
+            // ];
+
+            // const perspectiveData = [
+            //     { name: 'SF Only', value: 28, color: '#3b82f6' },
+            //     { name: 'WF Only', value: 32, color: '#8b5cf6' },
+            //     { name: 'Both SF & WF', value: 19, color: '#10b981' }
+            // ];
+
+            // const modelData = [
+            //     { name: 'GPT Series', count: 25 },
+            //     { name: 'LLaMA Series', count: 18 },
+            //     { name: 'T5/BERT', count: 15 },
+            //     { name: 'ChatGPT', count: 12 },
+            //     { name: 'Others', count: 9 }
+            // ];
+
+            // const methodData = [
+            //     { name: 'Direct Assessment', value: 22, color: '#f59e0b' },
+            //     { name: 'NLI Approach', value: 18, color: '#ef4444' },
+            //     { name: 'QG-QA', value: 12, color: '#06b6d4' },
+            //     { name: 'Semantic Analysis', value: 10, color: '#ec4899' },
+            //     { name: 'Classification', value: 8, color: '#8b5cf6' },
+            //     { name: 'Others', value: 9, color: '#64748b' }
+            // ];
+
+            // const datasetSizeData = [
+            //     { range: '< 1K', count: 12, size: 500 },
+            //     { range: '1K-10K', count: 18, size: 5000 },
+            //     { range: '10K-100K', count: 8, size: 50000 },
+            //     { range: '> 100K', count: 5, size: 200000 }
+            // ];
+// --- 数据定义 ---
+const timelineData = [
                 { year: '2020', count: 5 },
-                { year: '2021', count: 8 },
-                { year: '2022', count: 6 },
-                { year: '2023', count: 42 },
-                { year: '2024', count: 18 }
+                { year: '2021', count: 10 },
+                { year: '2022', count: 7 },
+                { year: '2023', count: 41 },
+                { year: '2024', count: 29 },
+                { year: '2025', count: 11 }
             ];
 
             const perspectiveData = [
-                { name: 'SF Only', value: 28, color: '#3b82f6' },
-                { name: 'WF Only', value: 32, color: '#8b5cf6' },
-                { name: 'Both SF & WF', value: 19, color: '#10b981' }
-            ];
-
-            const modelData = [
-                { name: 'GPT Series', count: 25 },
-                { name: 'LLaMA Series', count: 18 },
-                { name: 'T5/BERT', count: 15 },
-                { name: 'ChatGPT', count: 12 },
-                { name: 'Others', count: 9 }
+                { name: 'SF Only', value: 56, color: '#3b82f6' },  // Source Faithfulness
+                { name: 'WF Only', value: 36, color: '#8b5cf6' },  // World Factuality
+                { name: 'Both SF & WF', value: 13, color: '#10b981' }
             ];
 
             const methodData = [
-                { name: 'Direct Assessment', value: 22, color: '#f59e0b' },
-                { name: 'NLI Approach', value: 18, color: '#ef4444' },
-                { name: 'QG-QA', value: 12, color: '#06b6d4' },
-                { name: 'Semantic Analysis', value: 10, color: '#ec4899' },
-                { name: 'Classification', value: 8, color: '#8b5cf6' },
-                { name: 'Others', value: 9, color: '#64748b' }
+                { name: 'Direct Assessment', value: 28, color: '#f59e0b' }, // LLM-as-a-judge, Direct Score
+                { name: 'NLI Approach', value: 17, color: '#ef4444' },      // Entailment, Consistency
+                { name: 'Answer Match', value: 20, color: '#64748b' },      // Exact match, F1, String match
+                { name: 'Semantic Analysis', value: 12, color: '#ec4899' }, // Embedding, Entropy, Uncertainty
+                { name: 'QG-QA', value: 6, color: '#06b6d4' },
+                { name: 'Classification', value: 22, color: '#8b5cf6' }     // Binary/Multi-class, Probabilistic
             ];
 
             const datasetSizeData = [
-                { range: '< 1K', count: 12, size: 500 },
-                { range: '1K-10K', count: 18, size: 5000 },
-                { range: '10K-100K', count: 8, size: 50000 },
-                { range: '> 100K', count: 5, size: 200000 }
+                { range: '< 1K', count: 14, size: 500 },
+                { range: '1K-10K', count: 33, size: 5000 },
+                { range: '10K-100K', count: 10, size: 50000 },
+                { range: '> 100K', count: 7, size: 200000 }
             ];
 
+            
             const views = [
                 { id: 'timeline', label: '📊 Timeline', icon: '📈' },
                 { id: 'perspective', label: '🎯 Perspective', icon: '🔍' },
-                { id: 'models', label: '🤖 Models', icon: '💻' },
+                // { id: 'models', label: '🤖 Models', icon: '💻' },
                 { id: 'methods', label: '⚙️ Methods', icon: '🔧' },
                 { id: 'datasets', label: '📚 Datasets', icon: '📊' }
             ];
@@ -134,22 +166,22 @@
                 </div>
             );
 
-            const renderModels = () => (
-                <div className="space-y-4">
-                    <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
-                        Popular Models in Evaluation
-                    </h3>
-                    <ResponsiveContainer width="100%" height={350}>
-                        <BarChart data={modelData} layout="horizontal">
-                            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                            <XAxis type="number" stroke="#64748b" />
-                            <YAxis type="category" dataKey="name" width={120} stroke="#64748b" />
-                            <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' }} />
-                            <Bar dataKey="count" fill="#10b981" radius={[0, 8, 8, 0]} />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </div>
-            );
+            // const renderModels = () => (
+            //     <div className="space-y-4">
+            //         <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+            //             Popular Models in Evaluation
+            //         </h3>
+            //         <ResponsiveContainer width="100%" height={350}>
+            //             <BarChart data={modelData} layout="horizontal">
+            //                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+            //                 <XAxis type="number" stroke="#64748b" />
+            //                 <YAxis type="category" dataKey="name" width={120} stroke="#64748b" />
+            //                 <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' }} />
+            //                 <Bar dataKey="count" fill="#10b981" radius={[0, 8, 8, 0]} />
+            //             </BarChart>
+            //         </ResponsiveContainer>
+            //     </div>
+            // );
 
             const renderMethods = () => (
                 <div className="space-y-4">
@@ -213,11 +245,11 @@
                             </h1>
                             <p className="text-xl text-gray-600 mb-2">Catching the Elephant in the Room</p>
                             <div className="flex justify-center gap-4 text-sm text-gray-500 flex-wrap">
-                                <span>📝 79+ Evaluation Methods</span>
+                                <span>📝 105+ Evaluation Methods</span>
                                 <span>•</span>
-                                <span>📊 44+ Datasets</span>
+                                <span>📊 70+ Datasets</span>
                                 <span>•</span>
-                                <span>🚀 2020-2024</span>
+                                <span>🚀 2020-2025</span>
                             </div>
                         </div>
 
@@ -241,7 +273,7 @@
                         <div className="bg-white rounded-2xl shadow-2xl p-8 min-h-[500px]">
                             {activeView === 'timeline' && renderTimeline()}
                             {activeView === 'perspective' && renderPerspective()}
-                            {activeView === 'models' && renderModels()}
+                            {/* {activeView === 'models' && renderModels()} */}
                             {activeView === 'methods' && renderMethods()}
                             {activeView === 'datasets' && renderDatasets()}
                         </div>
