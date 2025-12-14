@@ -1,8 +1,11 @@
 # Awesome-Hallu-Eval: Can we catch the Elephant?
 
-📊 **[View Interactive Visualization](https://your-username.github.io/awesome-hallu-eval/)**
 
-![Preview](docs/preview.png)
+![Preview](docs/images/preview.png)
+
+📊 👆 **[View Interactive Visualization](https://siyaqi.github.io/Awesome-Hallu-Eval/)**
+
+---
 
 This is a curated list of evaluators designed to assess model hallucination. Here, you can easily find the right tools you need to evaluate and analyze hallucination behavior in language models.
 
