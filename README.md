@@ -241,7 +241,7 @@ Hallucinations can no longer remain the elephant in the room, they must be activ
 
 > 📝 **Citation**
 >
-> If you find our survey or this repository useful, please cite:
+> If you find our survey or this repository useful, you could cite ❤️:
 > ```bibtex
 > @article{hallueval2024,
 >   title={A Survey of Automatic Hallucination Evaluation on Natural Language Generation},
