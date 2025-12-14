@@ -1,56 +1,34 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Awesome Hallu-Eval - Hallucination Evaluation Visualization</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/recharts@2.10.0/dist/Recharts.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+    <script src="https://unpkg.com/recharts@2.8.0/umd/Recharts.js"></script>
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-        }
-        .bg-gradient-to-br {
-            background: linear-gradient(135deg, var(--tw-gradient-stops));
-        }
-        .bg-gradient-to-r {
-            background: linear-gradient(90deg, var(--tw-gradient-stops));
-        }
-        .text-transparent {
-            color: transparent;
-        }
-        .bg-clip-text {
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
+        body { font-family: -apple-system, sans-serif; }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
-    <script>
-        // 确保所有库都已加载
-        function initApp() {
-            if (typeof React === 'undefined' || typeof ReactDOM === 'undefined' || typeof Recharts === 'undefined') {
-                console.error('Libraries not loaded yet. Retrying...');
-                setTimeout(initApp, 100);
-                return;
-            }
-
-            const { useState } = React;
-            const { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, ScatterChart, Scatter, ZAxis } = Recharts;
+    <script type="text/babel">
+        const { useState } = React;
+        const { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, ScatterChart, Scatter, ZAxis } = Recharts;
 
         const HallucinationViz = () => {
             const [activeView, setActiveView] = useState('timeline');
 
-            // 时间线数据
+            // --- 数据定义 ---
             const timelineData = [
                 { year: '2020', count: 5 },
                 { year: '2021', count: 8 },
@@ -59,14 +37,12 @@
                 { year: '2024', count: 18 }
             ];
 
-            // 评估视角数据
             const perspectiveData = [
                 { name: 'SF Only', value: 28, color: '#3b82f6' },
                 { name: 'WF Only', value: 32, color: '#8b5cf6' },
                 { name: 'Both SF & WF', value: 19, color: '#10b981' }
             ];
 
-            // 模型使用频率
             const modelData = [
                 { name: 'GPT Series', count: 25 },
                 { name: 'LLaMA Series', count: 18 },
@@ -75,7 +51,6 @@
                 { name: 'Others', count: 9 }
             ];
 
-            // 方法类型分布
             const methodData = [
                 { name: 'Direct Assessment', value: 22, color: '#f59e0b' },
                 { name: 'NLI Approach', value: 18, color: '#ef4444' },
@@ -85,154 +60,12 @@
                 { name: 'Others', value: 9, color: '#64748b' }
             ];
 
-            // 数据集规模分布
             const datasetSizeData = [
                 { range: '< 1K', count: 12, size: 500 },
                 { range: '1K-10K', count: 18, size: 5000 },
                 { range: '10K-100K', count: 8, size: 50000 },
                 { range: '> 100K', count: 5, size: 200000 }
             ];
-
-            const renderTimeline = () => (
-                React.createElement('div', { className: 'space-y-4' },
-                    React.createElement('h3', { className: 'text-2xl font-bold text-center mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent' },
-                        'Hallucination Evaluation Methods Timeline'
-                    ),
-                    React.createElement(ResponsiveContainer, { width: '100%', height: 350 },
-                        React.createElement(LineChart, { data: timelineData },
-                            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#e2e8f0' }),
-                            React.createElement(XAxis, { dataKey: 'year', stroke: '#64748b', style: { fontSize: '14px', fontWeight: '600' } }),
-                            React.createElement(YAxis, { stroke: '#64748b', style: { fontSize: '14px', fontWeight: '600' } }),
-                            React.createElement(Tooltip, { contentStyle: { backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' } }),
-                            React.createElement(Line, { type: 'monotone', dataKey: 'count', stroke: '#3b82f6', strokeWidth: 3, dot: { fill: '#3b82f6', r: 6 }, activeDot: { r: 8 } })
-                        )
-                    ),
-                    React.createElement('div', { className: 'text-center text-sm text-gray-600 mt-4' },
-                        '📈 Explosive growth in 2023-2024 with ',
-                        React.createElement('span', { className: 'font-bold text-blue-600' }, '60 new methods')
-                    )
-                )
-            );
-
-            const renderPerspective = () => (
-                React.createElement('div', { className: 'space-y-4' },
-                    React.createElement('h3', { className: 'text-2xl font-bold text-center mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent' },
-                        'Evaluation Perspective Distribution'
-                    ),
-                    React.createElement('div', { className: 'flex justify-center' },
-                        React.createElement(ResponsiveContainer, { width: '100%', height: 350 },
-                            React.createElement(PieChart, null,
-                                React.createElement(Pie, {
-                                    data: perspectiveData,
-                                    cx: '50%',
-                                    cy: '50%',
-                                    labelLine: false,
-                                    label: ({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`,
-                                    outerRadius: 120,
-                                    fill: '#8884d8',
-                                    dataKey: 'value'
-                                },
-                                    perspectiveData.map((entry, index) =>
-                                        React.createElement(Cell, { key: `cell-${index}`, fill: entry.color })
-                                    )
-                                ),
-                                React.createElement(Tooltip, { contentStyle: { backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' } })
-                            )
-                        )
-                    ),
-                    React.createElement('div', { className: 'grid grid-cols-3 gap-4 mt-6' },
-                        perspectiveData.map((item, idx) =>
-                            React.createElement('div', { key: idx, className: 'text-center p-3 rounded-lg', style: { backgroundColor: `${item.color}20` } },
-                                React.createElement('div', { className: 'text-2xl font-bold', style: { color: item.color } }, item.value),
-                                React.createElement('div', { className: 'text-xs text-gray-600 mt-1' }, item.name)
-                            )
-                        )
-                    ),
-                    React.createElement('div', { className: 'text-center text-sm text-gray-600 mt-4' },
-                        'SF: Source-based Faithfulness | WF: World Knowledge Factuality'
-                    )
-                )
-            );
-
-            const renderModels = () => (
-                React.createElement('div', { className: 'space-y-4' },
-                    React.createElement('h3', { className: 'text-2xl font-bold text-center mb-6 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent' },
-                        'Popular Models in Evaluation'
-                    ),
-                    React.createElement(ResponsiveContainer, { width: '100%', height: 350 },
-                        React.createElement(BarChart, { data: modelData, layout: 'horizontal' },
-                            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#e2e8f0' }),
-                            React.createElement(XAxis, { type: 'number', stroke: '#64748b' }),
-                            React.createElement(YAxis, { type: 'category', dataKey: 'name', width: 120, stroke: '#64748b' }),
-                            React.createElement(Tooltip, { contentStyle: { backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' } }),
-                            React.createElement(Bar, { dataKey: 'count', fill: '#10b981', radius: [0, 8, 8, 0] })
-                        )
-                    ),
-                    React.createElement('div', { className: 'text-center text-sm text-gray-600 mt-4' },
-                        '🤖 GPT series leads with ',
-                        React.createElement('span', { className: 'font-bold text-green-600' }, '25 implementations')
-                    )
-                )
-            );
-
-            const renderMethods = () => (
-                React.createElement('div', { className: 'space-y-4' },
-                    React.createElement('h3', { className: 'text-2xl font-bold text-center mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent' },
-                        'Evaluation Method Types'
-                    ),
-                    React.createElement(ResponsiveContainer, { width: '100%', height: 350 },
-                        React.createElement(BarChart, { data: methodData },
-                            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#e2e8f0' }),
-                            React.createElement(XAxis, { dataKey: 'name', stroke: '#64748b', angle: -15, textAnchor: 'end', height: 80 }),
-                            React.createElement(YAxis, { stroke: '#64748b' }),
-                            React.createElement(Tooltip, { contentStyle: { backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' } }),
-                            React.createElement(Bar, { dataKey: 'value', radius: [8, 8, 0, 0] },
-                                methodData.map((entry, index) =>
-                                    React.createElement(Cell, { key: `cell-${index}`, fill: entry.color })
-                                )
-                            )
-                        )
-                    ),
-                    React.createElement('div', { className: 'text-center text-sm text-gray-600 mt-4' },
-                        '🔍 Diverse methodologies tackling hallucination from multiple angles'
-                    )
-                )
-            );
-
-            const renderDatasets = () => (
-                React.createElement('div', { className: 'space-y-4' },
-                    React.createElement('h3', { className: 'text-2xl font-bold text-center mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent' },
-                        'Dataset Landscape'
-                    ),
-                    React.createElement('div', { className: 'grid grid-cols-2 gap-6' },
-                        React.createElement('div', { className: 'bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl' },
-                            React.createElement('div', { className: 'text-4xl font-bold text-blue-600 text-center' }, '23'),
-                            React.createElement('div', { className: 'text-sm text-gray-600 text-center mt-2' }, 'Traditional Task Datasets'),
-                            React.createElement('div', { className: 'text-xs text-gray-500 text-center mt-1' }, 'Summarization, Dialogue, etc.')
-                        ),
-                        React.createElement('div', { className: 'bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl' },
-                            React.createElement('div', { className: 'text-4xl font-bold text-green-600 text-center' }, '9'),
-                            React.createElement('div', { className: 'text-sm text-gray-600 text-center mt-2' }, 'General Factuality Datasets'),
-                            React.createElement('div', { className: 'text-xs text-gray-500 text-center mt-1' }, 'QA, Multi-task, etc.')
-                        ),
-                        React.createElement('div', { className: 'bg-gradient-to-br from-orange-50 to-yellow-50 p-6 rounded-xl col-span-2' },
-                            React.createElement('div', { className: 'text-4xl font-bold text-orange-600 text-center' }, '12'),
-                            React.createElement('div', { className: 'text-sm text-gray-600 text-center mt-2' }, 'Evaluator Assessment Datasets'),
-                            React.createElement('div', { className: 'text-xs text-gray-500 text-center mt-1' }, 'Meta-evaluation benchmarks')
-                        )
-                    ),
-                    React.createElement(ResponsiveContainer, { width: '100%', height: 250 },
-                        React.createElement(ScatterChart, null,
-                            React.createElement(CartesianGrid, { strokeDasharray: '3 3', stroke: '#e2e8f0' }),
-                            React.createElement(XAxis, { type: 'category', dataKey: 'range', name: 'Dataset Size', stroke: '#64748b' }),
-                            React.createElement(YAxis, { type: 'number', dataKey: 'count', name: 'Count', stroke: '#64748b' }),
-                            React.createElement(ZAxis, { type: 'number', dataKey: 'size', range: [100, 1000] }),
-                            React.createElement(Tooltip, { cursor: { strokeDasharray: '3 3' }, contentStyle: { backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' } }),
-                            React.createElement(Scatter, { data: datasetSizeData, fill: '#06b6d4' })
-                        )
-                    )
-                )
-            );
 
             const views = [
                 { id: 'timeline', label: '📊 Timeline', icon: '📈' },
@@ -242,90 +75,183 @@
                 { id: 'datasets', label: '📚 Datasets', icon: '📊' }
             ];
 
-            return React.createElement('div', { className: 'w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 p-8' },
-                React.createElement('div', { className: 'max-w-6xl mx-auto' },
-                    // Header
-                    React.createElement('div', { className: 'text-center mb-8' },
-                        React.createElement('h1', { className: 'text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent' },
-                            '🐘 Awesome Hallu-Eval'
-                        ),
-                        React.createElement('p', { className: 'text-xl text-gray-600 mb-2' },
-                            'Catching the Elephant in the Room'
-                        ),
-                        React.createElement('div', { className: 'flex justify-center gap-4 text-sm text-gray-500 flex-wrap' },
-                            React.createElement('span', null, '📝 79+ Evaluation Methods'),
-                            React.createElement('span', null, '•'),
-                            React.createElement('span', null, '📊 44+ Datasets'),
-                            React.createElement('span', null, '•'),
-                            React.createElement('span', null, '🚀 2020-2024')
-                        )
-                    ),
+            // --- 渲染组件 ---
+            
+            const renderTimeline = () => (
+                <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        Hallucination Evaluation Methods Timeline
+                    </h3>
+                    <ResponsiveContainer width="100%" height={350}>
+                        <LineChart data={timelineData}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                            <XAxis dataKey="year" stroke="#64748b" style={{ fontSize: '14px', fontWeight: '600' }} />
+                            <YAxis stroke="#64748b" style={{ fontSize: '14px', fontWeight: '600' }} />
+                            <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' }} />
+                            <Line type="monotone" dataKey="count" stroke="#3b82f6" strokeWidth={3} dot={{ fill: '#3b82f6', r: 6 }} activeDot={{ r: 8 }} />
+                        </LineChart>
+                    </ResponsiveContainer>
+                    <div className="text-center text-sm text-gray-600 mt-4">
+                        📈 Explosive growth in 2023-2024 with <span className="font-bold text-blue-600">60 new methods</span>
+                    </div>
+                </div>
+            );
 
-                    // Navigation
-                    React.createElement('div', { className: 'flex justify-center gap-3 mb-8 flex-wrap' },
-                        views.map(view =>
-                            React.createElement('button', {
-                                key: view.id,
-                                onClick: () => setActiveView(view.id),
-                                className: `px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
-                                    activeView === view.id
-                                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                                        : 'bg-white text-gray-700 hover:bg-gray-50 shadow'
-                                }`
-                            },
-                                React.createElement('span', { className: 'mr-2' }, view.icon),
-                                view.label
-                            )
-                        )
-                    ),
+            const renderPerspective = () => (
+                <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        Evaluation Perspective Distribution
+                    </h3>
+                    <div className="flex justify-center">
+                        <ResponsiveContainer width="100%" height={350}>
+                            <PieChart>
+                                <Pie
+                                    data={perspectiveData}
+                                    cx="50%"
+                                    cy="50%"
+                                    labelLine={false}
+                                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                                    outerRadius={120}
+                                    fill="#8884d8"
+                                    dataKey="value"
+                                >
+                                    {perspectiveData.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={entry.color} />
+                                    ))}
+                                </Pie>
+                                <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' }} />
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4 mt-6">
+                        {perspectiveData.map((item, idx) => (
+                            <div key={idx} className="text-center p-3 rounded-lg" style={{ backgroundColor: `${item.color}20` }}>
+                                <div className="text-2xl font-bold" style={{ color: item.color }}>{item.value}</div>
+                                <div className="text-xs text-gray-600 mt-1">{item.name}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
 
-                    // Content
-                    React.createElement('div', { className: 'bg-white rounded-2xl shadow-2xl p-8 min-h-[500px]' },
-                        activeView === 'timeline' && renderTimeline(),
-                        activeView === 'perspective' && renderPerspective(),
-                        activeView === 'models' && renderModels(),
-                        activeView === 'methods' && renderMethods(),
-                        activeView === 'datasets' && renderDatasets()
-                    ),
+            const renderModels = () => (
+                <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+                        Popular Models in Evaluation
+                    </h3>
+                    <ResponsiveContainer width="100%" height={350}>
+                        <BarChart data={modelData} layout="horizontal">
+                            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                            <XAxis type="number" stroke="#64748b" />
+                            <YAxis type="category" dataKey="name" width={120} stroke="#64748b" />
+                            <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' }} />
+                            <Bar dataKey="count" fill="#10b981" radius={[0, 8, 8, 0]} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+            );
 
-                    // Footer Stats
-                    React.createElement('div', { className: 'mt-8 grid grid-cols-4 gap-4' },
-                        React.createElement('div', { className: 'bg-white rounded-xl p-4 shadow-lg text-center' },
-                            React.createElement('div', { className: 'text-3xl mb-2' }, '🏆'),
-                            React.createElement('div', { className: 'text-2xl font-bold text-blue-600' }, '79+'),
-                            React.createElement('div', { className: 'text-sm text-gray-600' }, 'Methods')
-                        ),
-                        React.createElement('div', { className: 'bg-white rounded-xl p-4 shadow-lg text-center' },
-                            React.createElement('div', { className: 'text-3xl mb-2' }, '📊'),
-                            React.createElement('div', { className: 'text-2xl font-bold text-purple-600' }, '44+'),
-                            React.createElement('div', { className: 'text-sm text-gray-600' }, 'Datasets')
-                        ),
-                        React.createElement('div', { className: 'bg-white rounded-xl p-4 shadow-lg text-center' },
-                            React.createElement('div', { className: 'text-3xl mb-2' }, '🔥'),
-                            React.createElement('div', { className: 'text-2xl font-bold text-green-600' }, '2023'),
-                            React.createElement('div', { className: 'text-sm text-gray-600' }, 'Peak Year')
-                        ),
-                        React.createElement('div', { className: 'bg-white rounded-xl p-4 shadow-lg text-center' },
-                            React.createElement('div', { className: 'text-3xl mb-2' }, '🎯'),
-                            React.createElement('div', { className: 'text-2xl font-bold text-orange-600' }, '24%'),
-                            React.createElement('div', { className: 'text-sm text-gray-600' }, 'Dual Perspective')
-                        )
-                    )
-                )
+            const renderMethods = () => (
+                <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                        Evaluation Method Types
+                    </h3>
+                    <ResponsiveContainer width="100%" height={350}>
+                        <BarChart data={methodData}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                            <XAxis dataKey="name" stroke="#64748b" angle={-15} textAnchor="end" height={80} />
+                            <YAxis stroke="#64748b" />
+                            <Tooltip contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' }} />
+                            <Bar dataKey="value" radius={[8, 8, 0, 0]}>
+                                {methodData.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={entry.color} />
+                                ))}
+                            </Bar>
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+            );
+
+            const renderDatasets = () => (
+                <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                        Dataset Landscape
+                    </h3>
+                    <div className="grid grid-cols-2 gap-6">
+                        <div className="bg-blue-50 p-6 rounded-xl">
+                            <div className="text-4xl font-bold text-blue-600 text-center">23</div>
+                            <div className="text-sm text-gray-600 text-center mt-2">Traditional Task Datasets</div>
+                        </div>
+                        <div className="bg-green-50 p-6 rounded-xl">
+                            <div className="text-4xl font-bold text-green-600 text-center">9</div>
+                            <div className="text-sm text-gray-600 text-center mt-2">General Factuality</div>
+                        </div>
+                        <div className="bg-orange-50 p-6 rounded-xl col-span-2">
+                            <div className="text-4xl font-bold text-orange-600 text-center">12</div>
+                            <div className="text-sm text-gray-600 text-center mt-2">Evaluator Assessment</div>
+                        </div>
+                    </div>
+                    <ResponsiveContainer width="100%" height={250}>
+                        <ScatterChart>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                            <XAxis type="category" dataKey="range" name="Dataset Size" stroke="#64748b" />
+                            <YAxis type="number" dataKey="count" name="Count" stroke="#64748b" />
+                            <ZAxis type="number" dataKey="size" range={[100, 1000]} />
+                            <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' }} />
+                            <Scatter data={datasetSizeData} fill="#06b6d4" />
+                        </ScatterChart>
+                    </ResponsiveContainer>
+                </div>
+            );
+
+            return (
+                <div className="w-full min-h-screen bg-slate-50 p-8">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-8">
+                            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                                🐘 Awesome Hallu-Eval
+                            </h1>
+                            <p className="text-xl text-gray-600 mb-2">Catching the Elephant in the Room</p>
+                            <div className="flex justify-center gap-4 text-sm text-gray-500 flex-wrap">
+                                <span>📝 79+ Evaluation Methods</span>
+                                <span>•</span>
+                                <span>📊 44+ Datasets</span>
+                                <span>•</span>
+                                <span>🚀 2020-2024</span>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-center gap-3 mb-8 flex-wrap">
+                            {views.map(view => (
+                                <button
+                                    key={view.id}
+                                    onClick={() => setActiveView(view.id)}
+                                    className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
+                                        activeView === view.id
+                                            ? 'bg-blue-600 text-white shadow-lg'
+                                            : 'bg-white text-gray-700 hover:bg-gray-50 shadow'
+                                    }`}
+                                >
+                                    <span className="mr-2">{view.icon}</span>
+                                    {view.label}
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className="bg-white rounded-2xl shadow-2xl p-8 min-h-[500px]">
+                            {activeView === 'timeline' && renderTimeline()}
+                            {activeView === 'perspective' && renderPerspective()}
+                            {activeView === 'models' && renderModels()}
+                            {activeView === 'methods' && renderMethods()}
+                            {activeView === 'datasets' && renderDatasets()}
+                        </div>
+                    </div>
+                </div>
             );
         };
 
-            // 渲染应用
-            const root = ReactDOM.createRoot(document.getElementById('root'));
-            root.render(React.createElement(HallucinationViz));
-        }
-
-        // 页面加载完成后初始化
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initApp);
-        } else {
-            initApp();
-        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<HallucinationViz />);
     </script>
 </body>
 </html>
