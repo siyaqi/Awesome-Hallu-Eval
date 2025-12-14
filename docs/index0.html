@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awesome Hallu-Eval Visualization</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/recharts@2.5.0/dist/Recharts.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        // 复制整个React组件代码（从下面的代码块）
+        
+        // import React, { useState } from 'react';
+        // import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, ScatterChart, Scatter, ZAxis } from 'recharts';
+        const { useState } = React;
+        const { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, ScatterChart, Scatter, ZAxis } = Recharts;
+        const HallucinationViz = () => {
+        const [activeView, setActiveView] = useState('timeline');
+
+        // 时间线数据 - 按年份统计方法数量
+        const timelineData = [
+            { year: '2020', count: 5 },
+            { year: '2021', count: 8 },
+            { year: '2022', count: 6 },
+            { year: '2023', count: 42 },
+            { year: '2024', count: 18 }
+        ];
+
+        // 评估视角数据
+        const perspectiveData = [
+            { name: 'SF Only', value: 28, color: '#3b82f6' },
+            { name: 'WF Only', value: 32, color: '#8b5cf6' },
+            { name: 'Both SF & WF', value: 19, color: '#10b981' }
+        ];
+
+        // 模型使用频率
+        const modelData = [
+            { name: 'GPT Series', count: 25 },
+            { name: 'LLaMA Series', count: 18 },
+            { name: 'T5/BERT', count: 15 },
+            { name: 'ChatGPT', count: 12 },
+            { name: 'Others', count: 9 }
+        ];
+
+        // 方法类型分布
+        const methodData = [
+            { name: 'Direct Assessment', value: 22, color: '#f59e0b' },
+            { name: 'NLI Approach', value: 18, color: '#ef4444' },
+            { name: 'QG-QA', value: 12, color: '#06b6d4' },
+            { name: 'Semantic Analysis', value: 10, color: '#ec4899' },
+            { name: 'Classification', value: 8, color: '#8b5cf6' },
+            { name: 'Others', value: 9, color: '#64748b' }
+        ];
+
+        // 数据集规模分布
+        const datasetSizeData = [
+            { range: '< 1K', count: 12, size: 500 },
+            { range: '1K-10K', count: 18, size: 5000 },
+            { range: '10K-100K', count: 8, size: 50000 },
+            { range: '> 100K', count: 5, size: 200000 }
+        ];
+
+        const COLORS = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4'];
+
+        const renderTimeline = () => (
+            <div className="space-y-4">
+            <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Hallucination Evaluation Methods Timeline
+            </h3>
+            <ResponsiveContainer width="100%" height={350}>
+                <LineChart data={timelineData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis dataKey="year" stroke="#64748b" style={{ fontSize: '14px', fontWeight: '600' }} />
+                <YAxis stroke="#64748b" style={{ fontSize: '14px', fontWeight: '600' }} />
+                <Tooltip 
+                    contentStyle={{ 
+                    backgroundColor: '#1e293b', 
+                    border: 'none', 
+                    borderRadius: '8px',
+                    color: '#fff'
+                    }} 
+                />
+                <Line 
+                    type="monotone" 
+                    dataKey="count" 
+                    stroke="#3b82f6" 
+                    strokeWidth={3}
+                    dot={{ fill: '#3b82f6', r: 6 }}
+                    activeDot={{ r: 8 }}
+                />
+                </LineChart>
+            </ResponsiveContainer>
+            <div className="text-center text-sm text-gray-600 mt-4">
+                📈 Explosive growth in 2023-2024 with <span className="font-bold text-blue-600">60 new methods</span>
+            </div>
+            </div>
+        );
+
+        const renderPerspective = () => (
+            <div className="space-y-4">
+            <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Evaluation Perspective Distribution
+            </h3>
+            <div className="flex justify-center">
+                <ResponsiveContainer width="100%" height={350}>
+                <PieChart>
+                    <Pie
+                    data={perspectiveData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                    outerRadius={120}
+                    fill="#8884d8"
+                    dataKey="value"
+                    >
+                    {perspectiveData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                    </Pie>
+                    <Tooltip 
+                    contentStyle={{ 
+                        backgroundColor: '#1e293b', 
+                        border: 'none', 
+                        borderRadius: '8px',
+                        color: '#fff'
+                    }}
+                    />
+                </PieChart>
+                </ResponsiveContainer>
+            </div>
+            <div className="grid grid-cols-3 gap-4 mt-6">
+                {perspectiveData.map((item, idx) => (
+                <div key={idx} className="text-center p-3 rounded-lg" style={{ backgroundColor: `${item.color}20` }}>
+                    <div className="text-2xl font-bold" style={{ color: item.color }}>{item.value}</div>
+                    <div className="text-xs text-gray-600 mt-1">{item.name}</div>
+                </div>
+                ))}
+            </div>
+            <div className="text-center text-sm text-gray-600 mt-4">
+                SF: Source-based Faithfulness | WF: World Knowledge Factuality
+            </div>
+            </div>
+        );
+
+        const renderModels = () => (
+            <div className="space-y-4">
+            <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+                Popular Models in Evaluation
+            </h3>
+            <ResponsiveContainer width="100%" height={350}>
+                <BarChart data={modelData} layout="horizontal">
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis type="number" stroke="#64748b" />
+                <YAxis type="category" dataKey="name" width={120} stroke="#64748b" />
+                <Tooltip 
+                    contentStyle={{ 
+                    backgroundColor: '#1e293b', 
+                    border: 'none', 
+                    borderRadius: '8px',
+                    color: '#fff'
+                    }}
+                />
+                <Bar dataKey="count" fill="#10b981" radius={[0, 8, 8, 0]} />
+                </BarChart>
+            </ResponsiveContainer>
+            <div className="text-center text-sm text-gray-600 mt-4">
+                🤖 GPT series leads with <span className="font-bold text-green-600">25 implementations</span>
+            </div>
+            </div>
+        );
+
+        const renderMethods = () => (
+            <div className="space-y-4">
+            <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                Evaluation Method Types
+            </h3>
+            <ResponsiveContainer width="100%" height={350}>
+                <BarChart data={methodData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis dataKey="name" stroke="#64748b" angle={-15} textAnchor="end" height={80} />
+                <YAxis stroke="#64748b" />
+                <Tooltip 
+                    contentStyle={{ 
+                    backgroundColor: '#1e293b', 
+                    border: 'none', 
+                    borderRadius: '8px',
+                    color: '#fff'
+                    }}
+                />
+                <Bar dataKey="value" radius={[8, 8, 0, 0]}>
+                    {methodData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                </Bar>
+                </BarChart>
+            </ResponsiveContainer>
+            <div className="text-center text-sm text-gray-600 mt-4">
+                🔍 Diverse methodologies tackling hallucination from multiple angles
+            </div>
+            </div>
+        );
+
+        const renderDatasets = () => (
+            <div className="space-y-4">
+            <h3 className="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                Dataset Landscape
+            </h3>
+            <div className="grid grid-cols-2 gap-6">
+                <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl">
+                <div className="text-4xl font-bold text-blue-600 text-center">23</div>
+                <div className="text-sm text-gray-600 text-center mt-2">Traditional Task Datasets</div>
+                <div className="text-xs text-gray-500 text-center mt-1">Summarization, Dialogue, etc.</div>
+                </div>
+                <div className="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl">
+                <div className="text-4xl font-bold text-green-600 text-center">9</div>
+                <div className="text-sm text-gray-600 text-center mt-2">General Factuality Datasets</div>
+                <div className="text-xs text-gray-500 text-center mt-1">QA, Multi-task, etc.</div>
+                </div>
+                <div className="bg-gradient-to-br from-orange-50 to-yellow-50 p-6 rounded-xl col-span-2">
+                <div className="text-4xl font-bold text-orange-600 text-center">12</div>
+                <div className="text-sm text-gray-600 text-center mt-2">Evaluator Assessment Datasets</div>
+                <div className="text-xs text-gray-500 text-center mt-1">Meta-evaluation benchmarks</div>
+                </div>
+            </div>
+            <ResponsiveContainer width="100%" height={250}>
+                <ScatterChart>
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                <XAxis 
+                    type="category" 
+                    dataKey="range" 
+                    name="Dataset Size" 
+                    stroke="#64748b"
+                />
+                <YAxis type="number" dataKey="count" name="Count" stroke="#64748b" />
+                <ZAxis type="number" dataKey="size" range={[100, 1000]} />
+                <Tooltip 
+                    cursor={{ strokeDasharray: '3 3' }}
+                    contentStyle={{ 
+                    backgroundColor: '#1e293b', 
+                    border: 'none', 
+                    borderRadius: '8px',
+                    color: '#fff'
+                    }}
+                />
+                <Scatter data={datasetSizeData} fill="#06b6d4" />
+                </ScatterChart>
+            </ResponsiveContainer>
+            </div>
+        );
+
+        const views = [
+            { id: 'timeline', label: '📊 Timeline', icon: '📈' },
+            { id: 'perspective', label: '🎯 Perspective', icon: '🔍' },
+            { id: 'models', label: '🤖 Models', icon: '💻' },
+            { id: 'methods', label: '⚙️ Methods', icon: '🔧' },
+            { id: 'datasets', label: '📚 Datasets', icon: '📊' }
+        ];
+
+        return (
+            <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 p-8">
+            <div className="max-w-6xl mx-auto">
+                {/* Header */}
+                <div className="text-center mb-8">
+                <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    🐘 Awesome Hallu-Eval
+                </h1>
+                <p className="text-xl text-gray-600 mb-2">Catching the Elephant in the Room</p>
+                <div className="flex justify-center gap-4 text-sm text-gray-500">
+                    <span>📝 79+ Evaluation Methods</span>
+                    <span>•</span>
+                    <span>📊 44+ Datasets</span>
+                    <span>•</span>
+                    <span>🚀 2020-2024</span>
+                </div>
+                </div>
+
+                {/* Navigation */}
+                <div className="flex justify-center gap-3 mb-8 flex-wrap">
+                {views.map(view => (
+                    <button
+                    key={view.id}
+                    onClick={() => setActiveView(view.id)}
+                    className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
+                        activeView === view.id
+                        ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                        : 'bg-white text-gray-700 hover:bg-gray-50 shadow'
+                    }`}
+                    >
+                    <span className="mr-2">{view.icon}</span>
+                    {view.label}
+                    </button>
+                ))}
+                </div>
+
+                {/* Content */}
+                <div className="bg-white rounded-2xl shadow-2xl p-8 min-h-[500px]">
+                {activeView === 'timeline' && renderTimeline()}
+                {activeView === 'perspective' && renderPerspective()}
+                {activeView === 'models' && renderModels()}
+                {activeView === 'methods' && renderMethods()}
+                {activeView === 'datasets' && renderDatasets()}
+                </div>
+
+                {/* Footer Stats */}
+                <div className="mt-8 grid grid-cols-4 gap-4">
+                <div className="bg-white rounded-xl p-4 shadow-lg text-center">
+                    <div className="text-3xl mb-2">🏆</div>
+                    <div className="text-2xl font-bold text-blue-600">79+</div>
+                    <div className="text-sm text-gray-600">Methods</div>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-lg text-center">
+                    <div className="text-3xl mb-2">📊</div>
+                    <div className="text-2xl font-bold text-purple-600">44+</div>
+                    <div className="text-sm text-gray-600">Datasets</div>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-lg text-center">
+                    <div className="text-3xl mb-2">🔥</div>
+                    <div className="text-2xl font-bold text-green-600">2023</div>
+                    <div className="text-sm text-gray-600">Peak Year</div>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-lg text-center">
+                    <div className="text-3xl mb-2">🎯</div>
+                    <div className="text-2xl font-bold text-orange-600">24%</div>
+                    <div className="text-sm text-gray-600">Dual Perspective</div>
+                </div>
+                </div>
+            </div>
+            </div>
+        );
+        };
+
+        export default HallucinationViz;
+        
+        // 渲染到页面
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<HallucinationViz />);
+    </script>
+</body>
+</html>
