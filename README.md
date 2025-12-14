@@ -1,8 +1,24 @@
 # Awesome-Hallu-Eval: Can we catch the Elephant?
 
+📊 **[View Interactive Visualization](https://your-username.github.io/awesome-hallu-eval/)**
+
+![Preview](docs/preview.png)
+
 This is a curated list of evaluators designed to assess model hallucination. Here, you can easily find the right tools you need to evaluate and analyze hallucination behavior in language models.
 
 Hallucinations can no longer remain the elephant in the room, they must be actively hunted down and captured.
+
+
+> 📖 **Survey:** For comprehensive analysis, detailed comparisons of evaluation methods, and future trends, please check out our survey paper:
+> **[A Survey of Automatic Hallucination Evaluation on Natural Language Generation](https://arxiv.org/pdf/2404.12041)**
+
+
+> 📢 **Update:** This repository is updated irregularly to catch up with the latest research. If you encounter relevant papers not listed here, contributions and contact are warmly welcome ❤️ !
+
+<br>
+
+
+
 
 ## 📚 Dataset & Benchmark
 
@@ -216,3 +232,18 @@ Hallucinations can no longer remain the elephant in the room, they must be activ
 | 2021 | **GO FIGURE** | Summ | BERT/RoBERTa | Meta-evaluation | Correlation | ✅ | ❌ |
 | 2021 | **Qiu et al.** | Summ | Multiple | Adversarial Meta | ASR | ✅ | ❌ |
 | 2022 | **HaRiM+** | Summ | PLMs | Token Likelihood | Correlation | ✅ | ❌ |
+
+---
+<br>
+
+> 📝 **Citation**
+>
+> If you find our survey or this repository useful, please cite:
+> ```bibtex
+> @article{hallueval2024,
+>   title={A Survey of Automatic Hallucination Evaluation on Natural Language Generation},
+>   journal={arXiv preprint arXiv:2404.12041},
+>   year={2024},
+>   url={https://arxiv.org/abs/2404.12041}
+> }
+> ```

@@ -22,11 +22,9 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState } = React;
         const { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, ScatterChart, Scatter, ZAxis } = Recharts;
 
         const HallucinationViz = () => {
-            const [activeView, setActiveView] = useState('timeline');
 
             // --- 数据定义 ---
             // const timelineData = [
@@ -98,14 +96,6 @@ const timelineData = [
                 { range: '> 100K', count: 7, size: 200000 }
             ];
 
-            
-            const views = [
-                { id: 'timeline', label: '📊 Timeline', icon: '📈' },
-                { id: 'perspective', label: '🎯 Perspective', icon: '🔍' },
-                // { id: 'models', label: '🤖 Models', icon: '💻' },
-                { id: 'methods', label: '⚙️ Methods', icon: '🔧' },
-                { id: 'datasets', label: '📚 Datasets', icon: '📊' }
-            ];
 
             // --- 渲染组件 ---
             
@@ -124,7 +114,7 @@ const timelineData = [
                         </LineChart>
                     </ResponsiveContainer>
                     <div className="text-center text-sm text-gray-600 mt-4">
-                        📈 Explosive growth in 2023-2024 with <span className="font-bold text-blue-600">60 new methods</span>
+                        📈 Explosive growth in 2023-2024 with <span className="font-bold text-blue-600">70 new methods</span>
                     </div>
                 </div>
             );
@@ -253,29 +243,22 @@ const timelineData = [
                             </div>
                         </div>
 
-                        <div className="flex justify-center gap-3 mb-8 flex-wrap">
-                            {views.map(view => (
-                                <button
-                                    key={view.id}
-                                    onClick={() => setActiveView(view.id)}
-                                    className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
-                                        activeView === view.id
-                                            ? 'bg-blue-600 text-white shadow-lg'
-                                            : 'bg-white text-gray-700 hover:bg-gray-50 shadow'
-                                    }`}
-                                >
-                                    <span className="mr-2">{view.icon}</span>
-                                    {view.label}
-                                </button>
-                            ))}
-                        </div>
-
-                        <div className="bg-white rounded-2xl shadow-2xl p-8 min-h-[500px]">
-                            {activeView === 'timeline' && renderTimeline()}
-                            {activeView === 'perspective' && renderPerspective()}
-                            {/* {activeView === 'models' && renderModels()} */}
-                            {activeView === 'methods' && renderMethods()}
-                            {activeView === 'datasets' && renderDatasets()}
+                        <div className="space-y-8">
+                            <div className="bg-white rounded-2xl shadow-2xl p-8">
+                                {renderTimeline()}
+                            </div>
+                            
+                            <div className="bg-white rounded-2xl shadow-2xl p-8">
+                                {renderPerspective()}
+                            </div>
+                            
+                            <div className="bg-white rounded-2xl shadow-2xl p-8">
+                                {renderMethods()}
+                            </div>
+                            
+                            <div className="bg-white rounded-2xl shadow-2xl p-8">
+                                {renderDatasets()}
+                            </div>
                         </div>
                     </div>
                 </div>
